@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.20.0'
+
+    compileOnly("org.projectlombok:lombok:1.18.46")
+	annotationProcessor("org.projectlombok:lombok:1.18.46")
+	
+	testCompileOnly("org.projectlombok:lombok:1.18.46")
+	testAnnotationProcessor("org.projectlombok:lombok:1.18.46")
+}
+
+test {
+    useJUnit()
+    systemProperty 'browser', System.getProperty('browser', 'firefox')
+}
+
+sourceSets {
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+    }
+}
